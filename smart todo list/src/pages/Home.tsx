@@ -1,9 +1,12 @@
-import React from 'react'
-import HeaderSecton from '../components/headerSection'
+import HeaderSecton from '../components/HeaderSection'
+import Background from '../components/Background'
+import FooterSection from '../components/FooterSection'
 const home = () => {
   return (
     <div>
       <HeaderSecton />
+      <Background />
+      <FooterSection />
     </div>
   )
 }
