@@ -1,11 +1,19 @@
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import * as React from "react";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 interface LocationPopupProps {
   open: boolean;
   onClose: () => void;
 }
 
+const options = ["Option 1", "Option 2"];
+
 const LocationPopup = ({ open, onClose }: LocationPopupProps) => {
+  const [value, setValue] = React.useState<string | null>(options[0]);
+  const [inputValue, setInputValue] = React.useState("");
+
   return (
     <div
       className={`fixed inset-0 z-50 overflow-y-auto 
@@ -13,14 +21,7 @@ const LocationPopup = ({ open, onClose }: LocationPopupProps) => {
         flex items-center justify-center 
         p-4 sm:p-6 md:p-8   ${open ? "visible" : "invisible"}`}
     >
-      <div
-        className="relative  w-full max-w-screen-lg rounded-md
-          bg-white
-           shadow-2xl 
-          border border-gray-200 dark:border-gray-700
-          max-h-[90vh] overflow-y-auto
-          "
-      >
+      <div className="bg-blue-200 rounded-2xl ">
         <div className="flex justify-end p-4">
           <button
             onClick={onClose}
@@ -30,10 +31,36 @@ const LocationPopup = ({ open, onClose }: LocationPopupProps) => {
           </button>
         </div>
         <div className="p-4">
-          <h1 className="text-2xl font-bold">Select Location</h1>
-          <p className="text-gray-500">
-            Select a location to get the weather and other details
-          </p>
+          <div className="text-xl font-bold">Select Your Current Location</div>
+          <div className=" text-white">
+            <br />
+            <Autocomplete
+              value={value}
+              onChange={(
+                _: React.SyntheticEvent,
+                newValue: string | null
+              ) => {
+                setValue(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(_, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              id="controllable-states-demo"
+              options={options}
+              sx={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Select Location"
+                  sx={{ bgColor: "white", borderColor: "white" }}
+                />
+              )}
+            />
+          </div>
+          <div className="flex ">
+            <button>Save</button>
+          </div>
         </div>
       </div>
     </div>
