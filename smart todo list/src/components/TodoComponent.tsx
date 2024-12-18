@@ -1,5 +1,7 @@
 import Checkbox from "@mui/material/Checkbox";
 import PlaceIcon from "@mui/icons-material/Place";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface TodoComponentProps {
   taskName: string;
@@ -7,6 +9,8 @@ interface TodoComponentProps {
   priority: string;
   isChecked: boolean;
   onCheckChange: (checked: boolean) => void;
+  onEditClick: () => void;
+  onDeleteClick: () => void;
 }
 
 const TodoComponent = ({
@@ -15,6 +19,8 @@ const TodoComponent = ({
   priority,
   isChecked,
   onCheckChange,
+  onEditClick,
+  onDeleteClick,
 }: TodoComponentProps) => {
   return (
     <div className="bg-blue-800 rounded-lg w-[80vw] h-[10vh] mt-2 flex flex-row text-white place-items-center">
@@ -31,6 +37,10 @@ const TodoComponent = ({
         <h2>{location}</h2>
       </div>
       <div className="basis-2/12">Priority: {priority}</div>
+      <div className="basis-1/12 flex space-x-2 justify-end">
+        <EditIcon onClick={onEditClick} sx={{ cursor: "pointer" }} />
+        <DeleteIcon onClick={onDeleteClick} sx={{ cursor: "pointer" }} />
+      </div>
     </div>
   );
 };
