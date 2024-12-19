@@ -6,13 +6,25 @@ import Autocomplete from "@mui/material/Autocomplete";
 interface LocationPopupProps {
   open: boolean;
   onClose: () => void;
+  onSaveLocation: (location: string) => void; // Handler to save location
+  selectedLocation: string; // Current selected location
 }
 
-const options = ["Option 1", "Option 2"];
+const options = ["Home", "Work", "Gym", "Supermarket"];
 
-const LocationPopup = ({ open, onClose }: LocationPopupProps) => {
-  const [value, setValue] = React.useState<string | null>(options[0]);
-  const [inputValue, setInputValue] = React.useState("");
+const LocationPopup = ({
+  open,
+  onClose,
+  onSaveLocation,
+  selectedLocation,
+}: LocationPopupProps) => {
+  const [value, setValue] = React.useState<string | null>(selectedLocation); // Use selected location as default
+
+  const handleSave = () => {
+    if (value) {
+      onSaveLocation(value); // Call the handler with the selected value
+    }
+  };
 
   return (
     <div
@@ -42,10 +54,6 @@ const LocationPopup = ({ open, onClose }: LocationPopupProps) => {
               ) => {
                 setValue(newValue);
               }}
-              inputValue={inputValue}
-              onInputChange={(_, newInputValue) => {
-                setInputValue(newInputValue);
-              }}
               id="controllable-states-demo"
               options={options}
               sx={{ width: 300 }}
@@ -58,8 +66,13 @@ const LocationPopup = ({ open, onClose }: LocationPopupProps) => {
               )}
             />
           </div>
-          <div className="flex ">
-            <button>Save</button>
+          <div className="flex mt-4 justify-end">
+            <button
+              onClick={handleSave}
+              className="bg-blue-800 text-white px-4 py-2 rounded"
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>
