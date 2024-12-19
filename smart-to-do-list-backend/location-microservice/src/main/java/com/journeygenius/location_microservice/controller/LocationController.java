@@ -51,7 +51,7 @@ public class LocationController {
         for (DistanceInfo info : distances) {
             locationService.addLocationToGraph(info.getFromId(), info.getToId(), info.getDistance());
         }
-
+        System.out.println("testing");
         return ResponseEntity.ok("Distances calculated and inserted successfully.");
     }
 
