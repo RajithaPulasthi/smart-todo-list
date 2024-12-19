@@ -7,76 +7,78 @@ interface Task {
   taskName: string;
   location: string;
   priority: string;
+  completed: boolean;
 }
 
 const Background = () => {
-  const [tasks, setTasks] = useState<Task[]>([]); // Persistent task state
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
+  const [isEditMode, setIsEditMode] = useState(false);
 
-  // Add a new task
+  // Function to handle new task submission
   const handleAddTask = (taskData: Task) => {
-    console.log("Adding Task:", taskData); // Debug
-    setTasks((prevTasks) => [...prevTasks, taskData]);
-    setIsPopupOpen(false); // Close popup
+    setTasks((prevTasks) => [...prevTasks, { ...taskData, completed: false }]);
   };
 
-  // Update an existing task
+  // Function to handle task update
   const handleUpdateTask = (updatedTask: Task) => {
-    console.log("Updating Task:", updatedTask); // Debug
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
-        task.taskName === taskToEdit?.taskName ? updatedTask : task
+        task === taskToEdit ? { ...task, ...updatedTask } : task
       )
     );
-    setIsPopupOpen(false); // Close popup
-    setIsEditMode(false);
     setTaskToEdit(null);
+    setIsEditMode(false);
+  };
+
+  const handleCheckChange = (index: number, checked: boolean) => {
+    setTasks((prevTasks) => {
+      const updatedTasks = [...prevTasks];
+      updatedTasks[index].completed = checked;
+      updatedTasks.sort((a, b) => Number(a.completed) - Number(b.completed)); // Sort by completed status
+      return updatedTasks;
+    });
   };
 
   const handleEditClick = (task: Task) => {
-    console.log("Editing Task:", task); // Debug
     setTaskToEdit(task);
     setIsEditMode(true);
     setIsPopupOpen(true);
   };
 
-  const handleDeleteTask = (taskToDelete: Task) => {
-    console.log("Deleting Task:", taskToDelete); // Debug
-    setTasks((prevTasks) => prevTasks.filter((task) => task !== taskToDelete));
+  const handleDeleteTask = (index: number) => {
+    setTasks((prevTasks) => prevTasks.filter((_, i) => i !== index));
   };
 
   return (
     <div className="flex flex-col items-center bg-blue-700">
-      {/* TodoTaskPopup */}
       <TodoTaskPopup
         open={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
+        onClose={() => {
+          setIsPopupOpen(false);
+          setTaskToEdit(null);
+          setIsEditMode(false);
+        }}
         onSubmit={isEditMode ? handleUpdateTask : handleAddTask}
         taskToEdit={taskToEdit}
         isEditMode={isEditMode}
       />
 
-      {/* Render Todo Components */}
-      <div className="mt-4 w-full flex flex-col items-center h-[66vh] overflow-auto">
+      <div className="mt-4 w-full flex flex-col items-center h-[66vh]">
         {tasks.map((task, index) => (
           <TodoComponent
             key={index}
             taskName={task.taskName}
             location={task.location}
             priority={task.priority}
-            isChecked={false}
-            onCheckChange={(checked) =>
-              console.log(`Task ${index} checked:`, checked)
-            }
+            isChecked={task.completed}
+            onCheckChange={(checked) => handleCheckChange(index, checked)}
             onEditClick={() => handleEditClick(task)}
-            onDeleteClick={() => handleDeleteTask(task)}
+            onDeleteClick={() => handleDeleteTask(index)}
           />
         ))}
       </div>
-
-      {/* Add Button */}
       <div className="flex flex-row-reverse w-full mr-16">
         <AddButton onClick={() => setIsPopupOpen(true)} />
       </div>

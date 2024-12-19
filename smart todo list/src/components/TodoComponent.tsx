@@ -37,9 +37,9 @@ const TodoComponent = ({
         <h2>{location}</h2>
       </div>
       <div className="basis-2/12">Priority: {priority}</div>
-      <div className="basis-1/12 flex space-x-2 justify-end">
-        <EditIcon onClick={onEditClick} sx={{ cursor: "pointer" }} />
-        <DeleteIcon onClick={onDeleteClick} sx={{ cursor: "pointer" }} />
+      <div className="basis-1/12 flex space-x-2">
+        <EditIcon onClick={onEditClick} className="cursor-pointer" />
+        <DeleteIcon onClick={onDeleteClick} className="cursor-pointer" />
       </div>
     </div>
   );
