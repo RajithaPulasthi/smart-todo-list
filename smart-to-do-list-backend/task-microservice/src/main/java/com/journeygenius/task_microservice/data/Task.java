@@ -16,11 +16,17 @@ public class Task {
     @Column(name = "priority")
     private int priority;
 
-    @Column(name = "locationId")
-    private int locationId;
+    @Column(name = "location_id")
+    private int location_id;
 
     public int getId() {
         return id;
+    }
+
+    public Task(String name, int priority, int location_id) {
+        this.name = name;
+        this.priority = priority;
+        this.location_id = location_id;
     }
 
     public void setId(int id) {
@@ -43,11 +49,11 @@ public class Task {
         this.priority = priority;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public int getLocation_id() {
+        return location_id;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setLocation_id(int location_id) {
+        this.location_id = location_id;
     }
 }

@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e03519f-0eb5-401d-b3ee-ec52db53a0af" name="Changes" comment="" />
+    <list default="true" id="7e03519f-0eb5-401d-b3ee-ec52db53a0af" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskLinkedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskLinkedListNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/controller/LocationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/controller/LocationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/TaskMicroserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/TaskMicroserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/controller/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/linkedList/TaskLinkedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/linkedList/TaskNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/service/TaskService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,19 +25,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Unnamed.executor": "Run",
     "git-widget-placeholder": "backend-develop-task-test"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.journeygenius.location_microservice.LocationMicroserviceApplication" />
       <module name="location-microservice" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="location-microservice" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -29,5 +40,16 @@
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
