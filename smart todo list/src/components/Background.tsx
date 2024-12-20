@@ -15,6 +15,7 @@ const Background = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [filterOption, setFilterOption] = useState("Default"); // New state for dropdown selection
 
   // Function to handle new task submission
   const handleAddTask = (taskData: Task) => {
@@ -51,6 +52,10 @@ const Background = () => {
     setTasks((prevTasks) => prevTasks.filter((_, i) => i !== index));
   };
 
+  const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilterOption(event.target.value); // Update the selected filter option
+  };
+
   return (
     <div className="flex flex-col items-center bg-blue-700">
       <TodoTaskPopup
@@ -64,6 +69,19 @@ const Background = () => {
         taskToEdit={taskToEdit}
         isEditMode={isEditMode}
       />
+
+      {/* Dropdown for filter */}
+      <div className="w-full flex justify-end mt-4 mr-16">
+        <select
+          value={filterOption}
+          onChange={handleFilterChange}
+          className="bg-white border border-gray-300 text-gray-700 rounded px-2 py-1"
+        >
+          <option value="Default">Default</option>
+          <option value="Priority">Priority</option>
+          <option value="Smart">Smart</option>
+        </select>
+      </div>
 
       <div className="mt-4 w-full flex flex-col items-center h-[66vh]">
         {tasks.map((task, index) => (
