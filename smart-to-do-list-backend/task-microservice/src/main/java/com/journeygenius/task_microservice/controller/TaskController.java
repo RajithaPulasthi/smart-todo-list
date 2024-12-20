@@ -31,8 +31,8 @@ public class TaskController {
 
     // Endpoint to reorder tasks by distance (placeholder)
     @GetMapping("/reorder/distance")
-    public ResponseEntity<String> reorderTasksByDistance() {
-        taskService.reorderByDistance(); // Reorder tasks based on distance (mock implementation)
+    public ResponseEntity<String> reorderTasksByDistance(@RequestParam Integer sourceId) {
+        taskService.reorderByDistance(sourceId); // Reorder tasks based on distance (mock implementation)
         return ResponseEntity.ok("Tasks reordered by distance (mock implementation).");
     }
 

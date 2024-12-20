@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e03519f-0eb5-401d-b3ee-ec52db53a0af" name="Changes" comment="Adding fully updated APIs for the Location Microservices">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/DistanceResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/LocationGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/LocationGraphNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/controller/LocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/controller/LocationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/DistanceInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/DistanceInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/LocationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/LocationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/graph/LocationGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/service/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/service/LocationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/controller/LocationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/controller/LocationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/data/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/data/Location.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/data/LocationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/data/LocationRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/graph/LocationGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/service/LocationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/service/LocationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/controller/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/service/TaskService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +31,7 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Location-Microservice" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.journeygenius.location_microservice.LocationMicroserviceApplication" />
       <module name="location-microservice" />
       <method v="2">
@@ -50,6 +40,15 @@
     </configuration>
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Adding fully updated APIs for the Location Microservices">
+      <option name="closed" value="true" />
+      <created>1734723791808</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734723791809</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

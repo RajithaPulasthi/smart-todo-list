@@ -1,16 +1,21 @@
 package com.journeygenius.task_microservice.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.journeygenius.task_microservice.data.Task;
 import com.journeygenius.task_microservice.data.TaskLinkedList;
 import com.journeygenius.task_microservice.data.TaskLinkedListNode;
 import com.journeygenius.task_microservice.data.TaskRepository;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+
+import org.json.JSONObject;
 
 @Service
 public class TaskService {
@@ -68,14 +73,47 @@ public class TaskService {
     }
 
 
-    // Reorder the task linked list based on distance (mock implementation)
-    public TaskLinkedList reorderByDistance() {
-        // This implementation assumes that we can get distances from a Location Microservice.
-        // For demonstration purposes, we'll just reorder by priority as a placeholder.
+    public TaskLinkedList reorderByDistance(Integer sourceId) {
+        // Create a RestTemplate instance
+        RestTemplate restTemplate = new RestTemplate();
 
+        // Construct the URL for the API call
+        String url = "http://localhost:8094/journey-genie-backend-api/locations/optimal-path?sourceId=" + sourceId;
 
-        return reorderByPriority(); // Placeholder: replace with actual distance-based logic
+        // Fetch the result as a String
+        String result = restTemplate.getForObject(url, String.class);
+
+        // Check if the result is a valid JSON array
+        if (result.startsWith("[") && result.endsWith("]")) {
+            // Parse the JSON array
+            JSONArray jsonArray = new JSONArray(result);
+
+            // Loop through each object in the array
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                int locationId = jsonObject.getInt("id");
+                //System.out.println("Location ID: " + locationId);
+
+                // Fetch the task for this location ID
+                Task task = fetchTaskByLocationId(locationId);
+                if (task != null) {
+                    // Add the task to the linked list
+                    taskLinkedList.insertNodeEnd(task);
+                } else {
+                    System.out.println("No task found for Location ID: " + locationId);
+                }
+            }
+        } else {
+            System.out.println("Received data is not a valid JSON array.");
+        }
+
+        return taskLinkedList; // Return appropriate TaskLinkedList as needed
     }
+
+    private Task fetchTaskByLocationId(int locationId) {
+        return taskRepository.findByLocationId(locationId);
+    }
+
 
     // Show the task linked list based on criteria (default, priority, distance)
     public ResponseEntity<List<Task>> showTasks(String criteria) {
@@ -86,7 +124,7 @@ public class TaskService {
                 displayList = reorderByPriority();
                 break;
             case "distance":
-                displayList = reorderByDistance();
+                displayList = reorderByDistance(1);
                 break;
             case "default":
             default:

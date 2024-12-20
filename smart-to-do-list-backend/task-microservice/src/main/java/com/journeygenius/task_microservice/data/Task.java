@@ -23,6 +23,9 @@ public class Task {
         return id;
     }
 
+    public Task(){
+    }
+
     public Task(String name, int priority, int location_id) {
         this.name = name;
         this.priority = priority;
