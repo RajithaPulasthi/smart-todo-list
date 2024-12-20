@@ -3,26 +3,44 @@ import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
+import { useState,useEffect } from "react";
+
+const LocationAPI ='http://localhost:8094/journey-genie-backend-api';
+
 interface LocationPopupProps {
   open: boolean;
   onClose: () => void;
-  onSaveLocation: (location: string) => void; // Handler to save location
-  selectedLocation: string; // Current selected location
+  onSaveLocation: (location: string) => void; 
+  selectedLocation: string; 
 }
 
-const options = ["Home", "Work", "Gym", "Supermarket"];
-
-const LocationPopup = ({
+interface LocationData {
+  id: number,
+        name: string,
+        latitude: number,
+        longitude: number
+}
+export default function LocationPopup({
   open,
   onClose,
   onSaveLocation,
   selectedLocation,
-}: LocationPopupProps) => {
+}: LocationPopupProps) {
+  const [SelectedLocation, setSelectedLocation] = useState<LocationData[]>([]);
   const [value, setValue] = React.useState<string | null>(selectedLocation); // Use selected location as default
+
+  useEffect(() => {
+    const fetchLocation = async () => {
+      const response = await fetch(`${LocationAPI}/locations`);
+      const data = await response.json() as LocationData[];
+      setSelectedLocation(data);
+    }
+    fetchLocation();
+  }, []);
 
   const handleSave = () => {
     if (value) {
-      onSaveLocation(value); // Call the handler with the selected value
+      onSaveLocation(value); 
     }
   };
 
@@ -55,7 +73,7 @@ const LocationPopup = ({
                 setValue(newValue);
               }}
               id="controllable-states-demo"
-              options={options}
+              options={SelectedLocation.map((option) => option.name)}
               sx={{ width: 300 }}
               renderInput={(params) => (
                 <TextField
@@ -78,6 +96,6 @@ const LocationPopup = ({
       </div>
     </div>
   );
-};
+}
 
-export default LocationPopup;
+

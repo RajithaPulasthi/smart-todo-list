@@ -4,6 +4,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import React, { useState, useEffect } from "react";
+import { locationData } from "../api/location-api";
 
 interface TodoTaskPopupProps {
   open: boolean;
@@ -13,7 +14,7 @@ interface TodoTaskPopupProps {
   isEditMode: boolean;
 }
 
-const options = ["Home", "Work", "Gym", "Supermarket"];
+const options = [""];
 const priorityOptions = ["A", "B", "C"];
 
 const TodoTaskPopup = ({ open, onClose, onSubmit, taskToEdit, isEditMode }: TodoTaskPopupProps) => {
@@ -74,7 +75,7 @@ const TodoTaskPopup = ({ open, onClose, onSubmit, taskToEdit, isEditMode }: Todo
                 value={location}
                 onChange={(_, newValue: string | null) => setLocation(newValue)}
                 id="task-location"
-                options={options}
+                options={locationData.map((option) => option.name)}
                 renderInput={(params) => (
                   <TextField {...params} label="Select Location" required />
                 )}
