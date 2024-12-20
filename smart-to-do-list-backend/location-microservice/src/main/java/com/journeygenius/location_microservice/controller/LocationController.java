@@ -9,55 +9,81 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("/locations")
 public class LocationController {
+
     @Autowired
     private LocationService locationService;
 
-    @GetMapping(path = "/locations")
-    public List<Location> getAllLocations() {
-        return locationService.getAllLocations();
+    @GetMapping("/search")
+    public ResponseEntity<Location> getLocationByName(@RequestParam String name) {
+        Location location = locationService.getLocationByName(name);
+        if (location != null) {
+            return ResponseEntity.ok(location);
+        }
+        return ResponseEntity.notFound().build(); // Return 404 if not found
     }
 
-    @PostMapping(path = "/locations")
+    @PostMapping("/")
     public ResponseEntity<Location> createLocation(@RequestBody Location location) {
-        return ResponseEntity.ok(locationService.saveLocation(location));
+        Location createdLocation = locationService.addLocation(location);
+        return ResponseEntity.ok(createdLocation);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<String> addLocationToGraph(@RequestParam Integer id, @RequestParam List<Integer> connectedIds) {
-        locationService.addLocationToGraph(id, connectedIds);
-
-        return ResponseEntity.ok("Location added to the graph successfully.");
+    @GetMapping("/")
+    public ResponseEntity<List<Location>> getAllLocations() {
+        List<Location> locations = locationService.getAllLocations();
+        return ResponseEntity.ok(locations);
     }
 
-    @GetMapping("/display")
-    public ResponseEntity<String> displayGraph() {
-        locationService.showGraphinCLI();
-        return ResponseEntity.ok("Graph displayed in CLI.");
+    @PostMapping("/add-to-graph")
+    public ResponseEntity<String> addLocationsToGraph() {
+        locationService.addLocationsToGraph();
+        return ResponseEntity.ok("All locations added to the graph.");
     }
 
-    @GetMapping("/distance")
-    public ResponseEntity<String> calculateDistance() {
-        List<DistanceInfo> distances = locationService.calculateDistance();
+    @PostMapping("/create-edges")
+    public ResponseEntity<String> createEdgesBetweenNodes() {
+        locationService.createEdgesBetweenNodes();
+        return ResponseEntity.ok("Edges created between all nodes in the graph.");
+    }
 
-        // Check if distances were calculated
-        if (distances.isEmpty()) {
-            return ResponseEntity.ok("No distances calculated.");
+    @GetMapping("/calculate-distances")
+    public ResponseEntity<List<DistanceInfo>> getDistances() {
+        List<DistanceInfo> distances = locationService.calculateDistances();
+
+        if (distances != null && !distances.isEmpty()) {
+            return ResponseEntity.ok(distances); // Return distances as JSON
         }
 
-        // Insert distances into the LocationGraph
-        for (DistanceInfo info : distances) {
-            locationService.addLocationToGraph(info.getFromId(), info.getToId(), info.getDistance());
-        }
-        System.out.println("testing");
-        return ResponseEntity.ok("Distances calculated and inserted successfully.");
+        return ResponseEntity.noContent().build(); // Return 204 if no distances found
     }
 
-    @GetMapping(path = "/location-information")
-    public Location getLocationDetails(@RequestParam String query){
-        Location locationDetails = locationService.getLocationDetails(query);
-        return locationDetails;
+    @PostMapping("/set-current")
+    public ResponseEntity<String> setCurrentLocation(@RequestBody Location location) {
+        locationService.setCurrentLocation(location);
+        return ResponseEntity.ok("Current location set successfully.");
+    }
+
+    @GetMapping("/optimal-path")
+    public ResponseEntity<List<Location>> calculateOptimalPath(@RequestParam Integer sourceId) {
+        List<Location> optimalPath = locationService.calculateOptimalPath(sourceId);
+
+        if (!optimalPath.isEmpty()) {
+            return ResponseEntity.ok(optimalPath); // Return the optimal path as JSON
+        }
+
+        return ResponseEntity.notFound().build(); // Return 404 if no path found or unreachable
+    }
+
+
+    @GetMapping("/find-id")
+    public ResponseEntity<Integer> getIdByName(@RequestParam String name) {
+        Integer id = locationService.findIdByName(name);
+        if (id != null) {
+            return ResponseEntity.ok(id); // Return the found ID
+        }
+        return ResponseEntity.notFound().build(); // Return 404 if not found
     }
 }

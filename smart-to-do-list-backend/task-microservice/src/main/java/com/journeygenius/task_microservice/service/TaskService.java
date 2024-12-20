@@ -73,6 +73,7 @@ public class TaskService {
         // This implementation assumes that we can get distances from a Location Microservice.
         // For demonstration purposes, we'll just reorder by priority as a placeholder.
 
+
         return reorderByPriority(); // Placeholder: replace with actual distance-based logic
     }
 

@@ -4,24 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e03519f-0eb5-401d-b3ee-ec52db53a0af" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskLinkedList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskLinkedListNode.java" afterDir="false" />
+    <list default="true" id="7e03519f-0eb5-401d-b3ee-ec52db53a0af" name="Changes" comment="Adding fully updated APIs for the Location Microservices">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/DistanceResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/LocationGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/LocationGraphNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/controller/LocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/controller/LocationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/DistanceInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/DistanceInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/LocationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/data/LocationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/graph/LocationGraph.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/service/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/journeygenius/location_microservice/service/LocationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/controller/LocationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/controller/LocationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../task-microservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/TaskMicroserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/TaskMicroserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/controller/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/controller/TaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/data/TaskRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/linkedList/TaskLinkedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/linkedList/TaskNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/data/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/data/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/data/LocationRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/data/LocationRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/graph/LocationGraph.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/service/LocationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/journeygenius/location_microservice/service/LocationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/service/TaskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../task-microservice/src/main/java/com/journeygenius/task_microservice/service/TaskService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -51,5 +62,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adding fully updated APIs for the Location Microservices" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding fully updated APIs for the Location Microservices" />
   </component>
 </project>
