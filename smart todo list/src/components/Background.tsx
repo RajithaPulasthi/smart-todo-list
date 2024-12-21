@@ -53,7 +53,7 @@ const Background = () => {
   };
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilterOption(event.target.value); // Update the selected filter option
+    setFilterOption(event.target.value); 
   };
 
   return (
