@@ -1,57 +1,58 @@
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { useState, useEffect } from "react";
 
-import { useState,useEffect } from "react";
-
-const LocationAPI ='http://localhost:8094/journey-genie-backend-api';
+const LocationAPI = "http://localhost:8094/journey-genie-backend-api/locations";
 
 interface LocationPopupProps {
   open: boolean;
   onClose: () => void;
-  onSaveLocation: (location: string) => void; 
-  selectedLocation: string; 
+  onSave: (locationName: string) => void;
 }
 
-interface LocationData {
-  id: number,
-        name: string,
-        latitude: number,
-        longitude: number
+interface LocationDataProps {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
 }
-export default function LocationPopup({
-  open,
-  onClose,
-  onSaveLocation,
-  selectedLocation,
-}: LocationPopupProps) {
-  const [SelectedLocation, setSelectedLocation] = useState<LocationData[]>([]);
-  const [value, setValue] = React.useState<string | null>(selectedLocation); // Use selected location as default
+
+const LocationPopup = ({ open, onClose, onSave }: LocationPopupProps) => {
+  const [locationData, setLocationData] = useState<LocationDataProps[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchLocation = async () => {
-      const response = await fetch(`${LocationAPI}/locations`);
-      const data = await response.json() as LocationData[];
-      setSelectedLocation(data);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(LocationAPI);
+        const data = (await response.json()) as LocationDataProps[];
+        setLocationData(data);
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      }
+    };
+
+    if (open) {
+      fetchData();
     }
-    fetchLocation();
-  }, []);
+  }, [open]);
 
   const handleSave = () => {
-    if (value) {
-      onSaveLocation(value); 
+    if (selectedLocation) {
+      onSave(selectedLocation);
+      setSelectedLocation(null);
+      onClose();
     }
   };
 
   return (
     <div
-      className={`fixed inset-0 z-50 overflow-y-auto 
-        bg-black/50 backdrop-blur-sm 
-        flex items-center justify-center 
-        p-4 sm:p-6 md:p-8   ${open ? "visible" : "invisible"}`}
+      className={`fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 md:p-8 ${
+        open ? "visible" : "invisible"
+      }`}
     >
-      <div className="bg-blue-200 rounded-2xl ">
+      <div className="bg-blue-600 rounded-2xl">
         <div className="flex justify-end p-4">
           <button
             onClick={onClose}
@@ -62,32 +63,26 @@ export default function LocationPopup({
         </div>
         <div className="p-4">
           <div className="text-xl font-bold">Select Your Current Location</div>
-          <div className=" text-white">
+          <div className="text-white">
             <br />
             <Autocomplete
-              value={value}
-              onChange={(
-                _: React.SyntheticEvent,
-                newValue: string | null
-              ) => {
-                setValue(newValue);
-              }}
-              id="controllable-states-demo"
-              options={SelectedLocation.map((option) => option.name)}
+              value={selectedLocation}
+              onChange={(_, newValue) => setSelectedLocation(newValue)}
+              options={locationData.map((option) => option.name)}
               sx={{ width: 300 }}
               renderInput={(params) => (
                 <TextField
                   {...params}
                   label="Select Location"
-                  sx={{ bgColor: "white", borderColor: "white" }}
+                  sx={{ bgcolor: "white" }}
                 />
               )}
             />
           </div>
           <div className="flex mt-4 justify-end">
             <button
-              onClick={handleSave}
               className="bg-blue-800 text-white px-4 py-2 rounded"
+              onClick={handleSave}
             >
               Save
             </button>
@@ -96,6 +91,6 @@ export default function LocationPopup({
       </div>
     </div>
   );
-}
+};
 
-
+export default LocationPopup;
